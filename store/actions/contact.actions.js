@@ -40,7 +40,7 @@ export function saveContact(contact) {
 }
 
 export function removeContact(contactId) {
-    return contactService.remove()
+    return contactService.remove(contactId)
         .then(() => {
             store.dispatch({
                 type: REMOVE_CONTACT,

@@ -1,0 +1,9 @@
+.btns {
+    display: flex;
+    align-items: center;
+    gap: .2em;
+}
+
+.btns button:hover {
+    cursor: pointer;
+}
