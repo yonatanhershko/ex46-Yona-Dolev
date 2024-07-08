@@ -26,7 +26,7 @@ function remove(contactId) {
 }
 
 function save(contact) {
-    if (contact.id) {
+    if (contact._id) {
         return storageService.put(CONTACT_KEY, contact)
     } else {
         return storageService.post(CONTACT_KEY, contact)
@@ -46,7 +46,7 @@ function _createContacts() {
 
 function _createContact(fullName = 'Muki Dee', number = utilService.getRandomIntInclusive(1000000000, 9999999999)) {
     return {
-        id: utilService.makeId(),
+        _id: utilService.makeId(),
         fullName,
         number
     }
