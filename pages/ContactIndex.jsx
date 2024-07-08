@@ -23,7 +23,7 @@ export function ContactIndex() {
                 <article className="contact-container" key={contact._id}>
                     <h1>{contact.fullName}</h1>
                     <h2>{contact.number}</h2>
-                    <button><Link to={`/contact/${contact._id}`}>Go To Details</Link></button>
+                    <button className='btn btn-details'><Link to={`/contact/${contact._id}`}>Go To Details</Link></button>
                 </article>
             )}
 
