@@ -39,9 +39,11 @@ function _createContacts() {
     let contacts = utilService.loadFromStorage(CONTACT_KEY)
     if (!contacts || !contacts.length) {
         contacts = []
-        for (let i = 0; i < 5; i++) {
-            contacts.push(_createContact())
-        }
+            contacts.push(_createContact('Puki Pee'))
+            contacts.push(_createContact('Muki Dee'))
+            contacts.push(_createContact('Shuki Lee'))
+            contacts.push(_createContact('Brano Tegania'))
+            contacts.push(_createContact('Yonatan'))
         utilService.saveToStorage(CONTACT_KEY, contacts)
     }
 }
