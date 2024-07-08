@@ -48,6 +48,7 @@
 
 .btn:not(.btn-add):hover {
     background-color: #d6d6d6;
+    cursor: pointer;
 }
 
 .contact-filter, .sort-container {
@@ -61,7 +62,7 @@
     padding: 1em;
     border-radius: 8px;
     min-width: 220px;
-    
+
     background-color: #ff8343;
     color: #ffefd5;
     box-shadow: 0 1px 4px black;
