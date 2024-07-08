@@ -49,10 +49,10 @@ export function ContactEdit() {
         contactService.save(contactToEdit)
             .then((savedContact) => {
                 navigate('/contact')
-                showSuccessMsg(`Contact Saved (id: ${savedContact._id})`)
+                // showSuccessMsg(`Contact Saved (id: ${savedContact._id})`)
             })
             .catch(err => {
-                showErrorMsg('Cannot save contact')
+                // showErrorMsg('Cannot save contact')
                 console.log('err:', err)
             })
     }
