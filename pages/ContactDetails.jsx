@@ -5,28 +5,17 @@ const { useSelector, useDispatch } = ReactRedux
 import { contactService } from '../services/contact.service.js'
 import { loadContacts } from '../store/actions/contact.actions.js'
 
-function ContactDetails() {
+export function ContactDetails() {
     const { contactId } = useParams()
-    const dispatch = useDispatch()
-    const contacts = useSelector(storeState => storeState.contacts)
     const [contact, setContact] = useState(null)
-
     useEffect(() => {
-        dispatch(loadContacts())
-            .catch(() => {
-                console.log('Could not load contacts')
-            })
-    }, [dispatch])
+        contactService.get(contactId)
+            .then(setContact)
+            // .catch(err)
+    }, [])
 
-    useEffect(() => {
-        if (contacts && contacts.length > 0) {
-            const contact = contacts.find(contact => contact._id === contactId)
-            setContact(contact)
-        }
-    }, [contacts, contactId])
 
-    if (!contact) return <h3>Loading...</h3>
-
+    if (!contact) return <h3>Loading..</h3>
     return (
         <div>
             <h1>Contact Details</h1>
