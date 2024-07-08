@@ -11,13 +11,17 @@ export const contactService = {
     remove,
     save,
     getDefaultFilter,
-    getEmptyContact
+    getEmptyContact,
+    getDefaultSort,
+    getFilterFromSearchParams,
+    getSortFromSearchParams
 }
 
-function query(filterBy) {
+function query(filterBy, sortBy) {
     return storageService.query(CONTACT_KEY)
         .then(contacts => {
             contacts = _filter(contacts, filterBy)
+            contacts = _sort(contacts, sortBy)
             return contacts
         })
 }
@@ -36,6 +40,61 @@ function save(contact) {
     } else {
         return storageService.post(CONTACT_KEY, contact)
     }
+}
+
+function getEmptyContact(fullName = '', number = '') {
+    return { fullName, number }
+}
+
+function getDefaultFilter() {
+    return { txt: '', number: '' }
+}
+
+function getDefaultSort() {
+    return { field: 'name', dir: 1 }
+}
+
+function getFilterFromSearchParams(searchParams) {
+    const defaultFilter = getDefaultFilter()
+    const filterBy = {}
+    for (const field in defaultFilter) {
+        if (field === 'pageIdx') {
+            filterBy[field] = parseInt(searchParams.get(field))
+            if (isNaN(filterBy[field])) filterBy[field] = undefined
+        } else {
+            filterBy[field] = searchParams.get(field) || ''
+        }
+    }
+    return filterBy
+}
+
+function getSortFromSearchParams(searchParams) {
+    const defaultSort = getDefaultSort()
+    const sortBy = {}
+    for (const field in defaultSort) {
+        sortBy[field] = searchParams.get(field) || ''
+    }
+    return sortBy
+}
+
+function _filter(contacts, filterBy) {
+    if (filterBy.txt) {
+        const regExp = new RegExp(filterBy.txt, 'i')
+        contacts = contacts.filter(contact => regExp.test(contact.fullName))
+    }
+    if (filterBy.number) {
+        contacts = contacts.filter(contact => contact.number.startsWith(filterBy.number))
+    }
+    return contacts
+}
+
+function _sort(contacts, sortBy) {
+    if (sortBy.field === 'name') {
+        contacts = contacts.toSorted((c1, c2) => c1.fullName.localeCompare(c2.fullName) * sortBy.dir)
+    } else if (sortBy.field === 'number') {
+        contacts = contacts.toSorted((c1, c2) => (c2.number - c1.number) * sortBy.dir)
+    }
+    return contacts
 }
 
 function _createContacts() {
@@ -57,23 +116,4 @@ function _createContact(fullName = 'Muki Dee', number = `05${utilService.getRand
         fullName,
         number
     }
-}
-
-function getEmptyContact(fullName = '', number = '') {
-    return { fullName, number }
-}
-
-function getDefaultFilter() {
-    return { txt: '', number: '' }
-}
-
-function _filter(contacts, filterBy) {
-    if (filterBy.txt) {
-        const regExp = new RegExp(filterBy.txt, 'i')
-        contacts = contacts.filter(contact => regExp.test(contact.fullName))
-    }
-    if (filterBy.number) {
-        contacts = contacts.filter(contact => contact.number.startsWith(filterBy.number))
-    }
-    return contacts
 }
