@@ -1,3 +1,5 @@
+import { contactService } from "../services/contact.service.js"
+
 const { createStore } = Redux
 
 //* CONTACTS
@@ -6,42 +8,50 @@ export const REMOVE_CONTACT = 'REMOVE_CONTACT'
 export const ADD_CONTACT = 'ADD_CONTACT'
 export const UPDATE_CONTACT = 'UPDATE_CONTACT'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
-
+export const SET_FILTER_BY = 'SET_FILTER_BY'
 
 
 const initialState = {
-    contacts: [],
+    contacts: undefined,
     isLoading: false,
+    filterBy: contactService.getDefaultFilter(),
+
 }
 
 function appReducer(state = initialState, cmd = {}) {
     switch (cmd.type) {
-           //     //* CONTACT
-           case SET_CONTACTS:
+        //     //* CONTACT
+        case SET_CONTACTS:
             return {
                 ...state,
                 contacts: cmd.contacts
             }
-            case REMOVE_CONTACT:
-                return {
-                    ...state,
-                    contacts: state.contacts.filter(contact => contact._id !== cmd.contactId)
-                }
-            case ADD_CONTACT:
-                return {
-                    ...state,
-                    contacts: [...state.contacts, cmd.contact]
-                }
-            case UPDATE_CONTACT:
-                return {
-                    ...state,
-                    contacts: state.contacts.map(contact => contact._id === cmd.contact._id ? cmd.contact : contact)
-                }
-            case SET_IS_LOADING:
-                return {
-                    ...state,
-                    isLoading: cmd.isLoading
-                }
+        case REMOVE_CONTACT:
+            return {
+                ...state,
+                contacts: state.contacts.filter(contact => contact._id !== cmd.contactId)
+            }
+        case ADD_CONTACT:
+            return {
+                ...state,
+                contacts: [...state.contacts, cmd.contact]
+            }
+        case UPDATE_CONTACT:
+            return {
+                ...state,
+                contacts: state.contacts.map(contact => contact._id === cmd.contact._id ? cmd.contact : contact)
+            }
+        case SET_IS_LOADING:
+            return {
+                ...state,
+                isLoading: cmd.isLoading
+            }
+
+        case SET_FILTER_BY:
+            return {
+                ...state,
+                filterBy: { ...state.filterBy, ...cmd.filterBy }
+            }
         default:
             return state
     }
