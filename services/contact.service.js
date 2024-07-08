@@ -9,7 +9,8 @@ export const contactService = {
     query,
     get,
     remove,
-    save
+    save,
+    getEmptyContact
 }
 
 function query() {
@@ -51,4 +52,8 @@ function _createContact(fullName = 'Muki Dee', number = `05${utilService.getRand
         fullName,
         number
     }
+}
+
+function getEmptyContact(fullName ='',number = '05' ) {
+    return { fullName , number}
 }
