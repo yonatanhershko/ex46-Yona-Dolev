@@ -7,6 +7,7 @@ import { ContactIndex } from "./pages/ContactIndex.jsx"
 import { ContactDetails } from './pages/ContactDetails.jsx'
 import { Home } from "./pages/Home.jsx"
 import { store } from "./store/store.js"
+import { AppFooter } from "./pages/AppFooter.jsx"
 
 
 export function App() {
@@ -16,11 +17,12 @@ export function App() {
                 <div className="app-main-layout">
                     <Routes>
                         <Route path="/" element={<ContactIndex />} />
-
+                        <Route path="/contact/edit" element={<ContactEdit />} />
                         <Route path="/contact/:contactId" element={<ContactDetails />} />
 
                     </Routes>
                 </div>
+                <AppFooter />
             </Router>
         </Provider>
     )
