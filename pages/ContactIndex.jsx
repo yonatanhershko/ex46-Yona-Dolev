@@ -28,6 +28,9 @@ export function ContactIndex() {
     if (!contacts) return <h3>Loading..</h3>
     return (
         <section className="contact-index">
+            <article className="add-container">
+                <button className='btn btn-add'><Link to='/contact/edit'>Add</Link></button>
+            </article>
             {isLoading
                 ? <div>Loading..</div>
                 : <ContactList contacts={contacts} onDeleteContact={onDeleteContact} />}
