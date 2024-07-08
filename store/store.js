@@ -9,13 +9,14 @@ export const ADD_CONTACT = 'ADD_CONTACT'
 export const UPDATE_CONTACT = 'UPDATE_CONTACT'
 export const SET_IS_LOADING = 'SET_IS_LOADING'
 export const SET_FILTER_BY = 'SET_FILTER_BY'
+export const SET_SORT_BY = 'SET_SORT_BY'
 
 
 const initialState = {
     contacts: undefined,
     isLoading: false,
     filterBy: contactService.getDefaultFilter(),
-
+    sortBy: contactService.getDefaultSort()
 }
 
 function appReducer(state = initialState, cmd = {}) {
@@ -51,6 +52,11 @@ function appReducer(state = initialState, cmd = {}) {
             return {
                 ...state,
                 filterBy: { ...state.filterBy, ...cmd.filterBy }
+            }
+        case SET_SORT_BY:
+            return {
+                ...state,
+                sortBy: cmd.sortBy
             }
         default:
             return state

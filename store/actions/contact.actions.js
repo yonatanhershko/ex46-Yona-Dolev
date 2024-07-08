@@ -1,12 +1,12 @@
 import { contactService } from '../../services/contact.service.js'
-import { ADD_CONTACT, REMOVE_CONTACT, SET_FILTER_BY, SET_IS_LOADING, UPDATE_CONTACT } from '../store.js'
+import { ADD_CONTACT, REMOVE_CONTACT, SET_FILTER_BY, SET_IS_LOADING, SET_SORT_BY, UPDATE_CONTACT } from '../store.js'
 import { SET_CONTACTS, store } from '../store.js'
 
 
-export function loadContacts(filterBy) {
+export function loadContacts(filterBy, sortBy) {
 
     store.dispatch({ type: SET_IS_LOADING, isLoading: true })
-    return contactService.query(filterBy)
+    return contactService.query(filterBy, sortBy)
         .then(contacts => {
             store.dispatch({
                 type: SET_CONTACTS,
@@ -14,7 +14,7 @@ export function loadContacts(filterBy) {
             })
         })
         .catch(err => {
-            console.error('Cannot load todos:', err)
+            console.error('Cannot load contacts:', err)
             throw err
         })
         .finally(() => {
@@ -54,4 +54,8 @@ export function removeContact(contactId) {
 
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_FILTER_BY, filterBy })
+}
+
+export function setSortBy(sortBy) {
+    store.dispatch({ type: SET_SORT_BY , sortBy})
 }
