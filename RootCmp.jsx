@@ -5,9 +5,11 @@ const { Provider } = ReactRedux
 
 import { ContactIndex } from "./pages/ContactIndex.jsx"
 import { ContactDetails } from './pages/ContactDetails.jsx'
+import { ContactEdit } from './pages/ContactEdit.jsx'
 import { Home } from "./pages/Home.jsx"
 import { store } from "./store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
+import { AppFooter } from "./pages/AppFooter.jsx"
 
 
 export function App() {
@@ -19,10 +21,12 @@ export function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/contact" element={<ContactIndex />} />
+                        <Route path="/contact/edit/:contactId" element={<ContactEdit />} />
                         <Route path="/contact/:contactId" element={<ContactDetails />} />
 
                     </Routes>
                 </div>
+                <AppFooter />
             </Router>
         </Provider>
     )
