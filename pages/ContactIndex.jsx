@@ -1,7 +1,4 @@
-const { useEffect } = React
 const { useSelector } = ReactRedux
-const { Link } = ReactRouterDOM
-
 import { contactService } from '../services/contact.service.js'
 import { loadContacts } from '../store/actions/contact.actions.js'
 import { SET_CONTACTS, store } from '../store/store.js'
@@ -16,14 +13,17 @@ export function ContactIndex() {
             })
     }, [])
 
-    if (!contacts) return <h3>Loading..</h3>
+    function onMoveToContact(contactId) {
+        console.log(contactId)
+    }
+
     return (
         <section className="contact-index">
             {contacts.map(contact =>
                 <article className="contact-container" key={contact._id}>
                     <h1>{contact.fullName}</h1>
                     <h2>{contact.number}</h2>
-                    <button><Link to={`/contact/${contact._id}`}>Go To Details</Link></button>
+                    <button onClick={() => onMoveToContact(contact._id)}>Go To Details</button>
                 </article>
             )}
 
