@@ -9,7 +9,7 @@ import { ContactEdit } from './pages/ContactEdit.jsx'
 import { Home } from "./pages/Home.jsx"
 import { store } from "./store/store.js"
 import { AppHeader } from "./cmps/AppHeader.jsx"
-import { AppFooter } from "./pages/AppFooter.jsx"
+import { AppFooter } from "./cmps/AppFooter.jsx"
 
 
 export function App() {
