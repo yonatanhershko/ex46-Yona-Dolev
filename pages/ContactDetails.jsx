@@ -17,11 +17,11 @@ export function ContactDetails() {
 
     if (!contact) return <h3>Loading..</h3>
     return (
-        <div>
+        <section className='details-container'>
             <h1>Contact Details</h1>
             <p>Name:{contact.fullName}</p>
             <p>Number:{contact.number}</p>
-            <Link to="/">Back to Contacts</Link>
-        </div>
+            <Link to="/contact">Back to Contacts</Link>
+        </section>
     )
 }
