@@ -56,6 +56,6 @@ function _createContact(fullName = 'Muki Dee', number = `05${utilService.getRand
     }
 }
 
-function getEmptyContact(fullName ='',number = '05' ) {
-    return { fullName , number}
+function getEmptyContact(fullName = '', number = '') {
+    return { fullName, number }
 }
