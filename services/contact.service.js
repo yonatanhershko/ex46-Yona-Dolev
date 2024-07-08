@@ -18,6 +18,7 @@ function query() {
 }
 
 function get(contactId) {
+    // console.log(contactId);
     return storageService.get(CONTACT_KEY, contactId)
 }
 
