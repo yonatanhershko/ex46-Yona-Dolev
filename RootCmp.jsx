@@ -1,4 +1,3 @@
-import { ContactIndex } from "./pages/ContactIndex.jsx"
 import { Home } from "./pages/Home.jsx"
 
 const Router = ReactRouterDOM.HashRouter
