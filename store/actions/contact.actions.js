@@ -1,7 +1,7 @@
 const { useDispatch } = ReactRedux
 import { contactService } from '../../services/contact.service.js'
 import { ADD_CONTACT, REMOVE_CONTACT, UPDATE_CONTACT } from '../store.js'
-import { SET_CONTACTS, store } from '../store/store.js'
+import { SET_CONTACTS, store } from '../store.js'
 
 
 export function loadContacts() {
