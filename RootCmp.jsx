@@ -1,5 +1,3 @@
-import { Home } from "./pages/Home.jsx"
-
 const Router = ReactRouterDOM.HashRouter
 const { Routes, Route } = ReactRouterDOM
 const { Provider } = ReactRedux

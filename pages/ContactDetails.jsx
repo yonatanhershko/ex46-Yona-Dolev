@@ -2,7 +2,7 @@ const { useState, useEffect } = React
 const { Link, useParams, useNavigate } = ReactRouterDOM
 
 
-import {contactService} from '../services/contact.service'
+import { contactService } from '../services/contact.service.js'
 
 
 function ContactDetails() {
@@ -24,8 +24,6 @@ function ContactDetails() {
                 navigate('/')
             })
     }
-
-    if (!contact) return <h1>Loading...</h1>
 
     return (
         <div>

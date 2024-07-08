@@ -14,7 +14,7 @@ export const contactService = {
 
 function query() {
     return storageService.query(CONTACT_KEY)
-        .then(contacts => console.log(contacts))
+        .then(contacts => contacts)
 }
 
 function get(contactId) {
@@ -44,7 +44,7 @@ function _createContacts() {
     }
 }
 
-function _createContact(fullName = 'Muki Dee', number = utilService.getRandomIntInclusive(1000000000, 9999999999)) {
+function _createContact(fullName = 'Muki Dee', number = `05${utilService.getRandomIntInclusive(10000000, 99999999)}`) {
     return {
         _id: utilService.makeId(),
         fullName,
