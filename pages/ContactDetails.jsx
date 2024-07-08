@@ -1,29 +1,31 @@
 const { useState, useEffect } = React
 const { Link, useParams, useNavigate } = ReactRouterDOM
-
+const { useSelector, useDispatch } = ReactRedux
 
 import { contactService } from '../services/contact.service.js'
-
+import { loadContacts } from '../store/actions/contact.actions.js'
 
 function ContactDetails() {
-    const [contact, setContact] = useState(null)
     const { contactId } = useParams()
-    const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const contacts = useSelector(storeState => storeState.contacts)
+    const [contact, setContact] = useState(null)
 
     useEffect(() => {
-        loadContactDetails()
-    }, [contactId])
+        dispatch(loadContacts())
+            .catch(() => {
+                console.log('Could not load contacts')
+            })
+    }, [dispatch])
 
-    function loadContactDetails() {
-        contactService.get(contactId)
-            .then(contact => {
-                setContact(contact)
-            })
-            .catch(err => {
-                console.error('Failed to load contact details', err)
-                navigate('/')
-            })
-    }
+    useEffect(() => {
+        if (contacts && contacts.length > 0) {
+            const contact = contacts.find(contact => contact._id === contactId)
+            setContact(contact)
+        }
+    }, [contacts, contactId])
+
+    if (!contact) return <h3>Loading...</h3>
 
     return (
         <div>
@@ -33,5 +35,4 @@ function ContactDetails() {
             <Link to="/">Back to Contacts</Link>
         </div>
     )
-
 }
