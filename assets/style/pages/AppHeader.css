@@ -1,0 +1,25 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-inline: 1em;
+    height: 100px;
+    width: 100%;
+    background-color: #ff8343;
+    color: #ffefd5;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1em;
+    font-size: 1.2em;
+}
+
+.nav-links * {
+    transition: scale .3s;
+}
+
+.nav-links *:hover {
+    scale: 1.1;
+}
