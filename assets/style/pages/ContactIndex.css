@@ -1,0 +1,8 @@
+.contact-container {
+    background-color: #ff8343;
+    color: #ffefd5;
+    width: fit-content;
+    padding: 1em;
+    margin: .5em;
+    border-radius: 8px;
+}
